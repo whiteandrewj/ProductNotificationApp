@@ -17,14 +17,25 @@ public class SubscriptionController {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public int insertSubscription(Subscription subscription) {
+	public String insertSubscription(Subscription subscription) {
 		/* creates an instance of the Subscription object, then Jersey works behind the scenes 
 		 * of the javax.ws.rs imports to map the variables of the 
 		 * JSON object to the variables in the Subscription object
 		*/
 		
+		//validate values coming from client
+		System.out.println(subscription.getFirstName());
+		System.out.println(subscription.getLastName());
+		System.out.println(subscription.getEmailAddress());
+		System.out.println(subscription.getIsComputerSub());
+		System.out.println(subscription.getIsConsoleSub());
+		System.out.println(subscription.getIsHeaterSub());
+		System.out.println(subscription.getIsLawnSub());
+		System.out.println(subscription.getIsToolSub());
+		System.out.println(subscription.getIsTelevisionSub());
+		
 		SubscriptionService service = new SubscriptionService();
-		int rowsChanged = service.insertSubscription(subscription);
-		return rowsChanged;
+		
+		return service.insertSubscription(subscription);
 	}
 }

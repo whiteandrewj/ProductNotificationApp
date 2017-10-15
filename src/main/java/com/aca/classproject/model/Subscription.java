@@ -36,7 +36,7 @@ public class Subscription {
 	public boolean getIsLawnSub() {
 		return isLawnSub;
 	}
-	public boolean geIsToolSub() {
+	public boolean getIsToolSub() {
 		return isToolSub;
 	}
 	public boolean getIsTelevisionSub() {

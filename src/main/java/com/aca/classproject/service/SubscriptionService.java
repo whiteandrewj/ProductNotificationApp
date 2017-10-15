@@ -5,7 +5,7 @@ import com.aca.classproject.model.Subscription;
 
 public class SubscriptionService {
 	
-	public int insertSubscription(Subscription subscription) {
+	public String insertSubscription(Subscription subscription) {
 	
 		SubscriptionDao subscriptionDao = new SubscriptionDao();
 		 

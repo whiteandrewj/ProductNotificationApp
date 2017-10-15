@@ -28,16 +28,34 @@ app.controller('subscribeCtrl', function($scope, $http) {
 				"TV?" + newSubscription.isTelevisionSub + "\n"
 		);
 		
+		//convert value of 'undefined' properties to false
+		for (pos in newSubscription) {
+			if (newSubscription[pos] == undefined) {
+				newSubscription[pos] = false;
+			}
+		};
+		
+		alert(	"First " + newSubscription.firstName + "\n" +
+				"Last " + newSubscription.lastName + "\n" +
+				"Email " + newSubscription.emailAddress + "\n" +
+				"Comp? " + newSubscription.isComputerSub + "\n" +
+				"Console? " + newSubscription.isConsoleSub + "\n" +
+				"Heater? " + newSubscription.isHeaterSub + "\n" +
+				"Lawn? " + newSubscription.isLawnSub + "\n" +
+				"Tool? " + newSubscription.isToolSub + "\n" +
+				"TV?" + newSubscription.isTelevisionSub + "\n"
+		);
+		
 		$http.post("/ProductNotificationApp/rest/subscribe", newSubscription)
 		.then(
 				function success(response) {
-					
-					if (response.data == 1) {						
+					//TODO not getting an alert for this...not sure why
+					//if (response.data == 1) {						
 						alert("rows inserted: " + response.data + ", status: " + response.status);						
-					} else {
-						alert("error, return status: " + response.status);		
-					}
-				}					
+					//} else {
+					//	alert("error, return status: " + response.status);		
+					//} 
+				} 					
 		);
 		
 		
