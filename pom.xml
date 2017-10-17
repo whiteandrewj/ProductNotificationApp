@@ -86,6 +86,12 @@
             <artifactId>jersey-json</artifactId>
             <version>1.19.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sns -->
+		<dependency>
+   			<groupId>com.amazonaws</groupId>
+    			<artifactId>aws-java-sdk-sns</artifactId>
+    			<version>1.11.170</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

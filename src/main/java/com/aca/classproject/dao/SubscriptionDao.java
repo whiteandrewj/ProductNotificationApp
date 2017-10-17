@@ -18,11 +18,9 @@ public class SubscriptionDao {
 		
 		
 		public String insertSubscription(Subscription subscription) {
-		// public static void main(String[] args) {
 						
 			int personRecordsInserted;
 			int subscriptionRecordsInserted;
-			
 			String message = null;
 			PreparedStatement insertPersonStatement = null;
 			PreparedStatement insertSubscriptionStatement = null;
