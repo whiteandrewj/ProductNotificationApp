@@ -22,4 +22,4 @@
 hs_err_pid*
 
 # personally added to .gitignore file
-AwsApiKeys.java
+AwsCreds.java
