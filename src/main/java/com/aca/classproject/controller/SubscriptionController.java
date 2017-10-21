@@ -24,6 +24,7 @@ public class SubscriptionController {
 		*/
 		
 		//validate values coming from client
+		System.out.println("Values received from frontend: ");
 		System.out.println(subscription.getFirstName());
 		System.out.println(subscription.getLastName());
 		System.out.println(subscription.getEmailAddress());
@@ -36,6 +37,8 @@ public class SubscriptionController {
 		
 		SubscriptionService service = new SubscriptionService();
 		
-		return service.insertSubscription(subscription);
+		service.insertSubscription(subscription);
+		
+		return null;
 	}
 }

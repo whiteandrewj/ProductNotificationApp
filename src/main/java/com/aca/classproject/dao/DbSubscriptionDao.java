@@ -6,24 +6,28 @@ import java.sql.SQLException;
 
 import com.aca.classproject.model.Subscription;
 
-public class SubscriptionDao {
+public class DbSubscriptionDao {
 	
 		private final static String SQL_INSERT_PERSON = " INSERT INTO person "
 			+ " (FirstName, LastName, EmailAddress) "
 			+ " VALUES (?, ?, ? ); ";
 		
+		/* changed DB table structure
 		private final static String SQL_INSERT_SUBSCRIPTION = " INSERT INTO subscription "
 			+ " (PersonID, IsComputerSub, IsConsoleSub, IsHeaterSub, IsLawnSub, IsToolSub, IsTelevisionSub) "
 			+ " VALUES (?, ?, ?, ?, ?, ?, ? ); ";
+		*/
+		private final static String SQL_INSERT_COMPUTER_SUB = " INSERT INTO computer_subscription "
+				+ " (PersonID, ARN) VALUES "
+				+ " (?, ? ); ";
 		
 		
-		public String insertSubscription(Subscription subscription) {
+		public void insertNewComputerSubscription(Subscription subscription) {
 						
 			int personRecordsInserted;
-			int subscriptionRecordsInserted;
-			String message = null;
+			int computerSubscriptionRecordsInserted;
 			PreparedStatement insertPersonStatement = null;
-			PreparedStatement insertSubscriptionStatement = null;
+			PreparedStatement insertComputerSubscriptionStatement = null;
 			
 			Connection conn = MariaDbUtil.getConnection();
 		
@@ -36,7 +40,14 @@ public class SubscriptionDao {
 			personRecordsInserted = insertPersonStatement.executeUpdate();
 			//System.out.println("Person records: " + personRecordsInserted);
 			
+			//what if it breaks in between the two insert statements??
 			
+			insertComputerSubscriptionStatement = conn.prepareStatement(SQL_INSERT_COMPUTER_SUB);
+			insertComputerSubscriptionStatement.setInt(1, MariaDbUtil.getRecordKey(conn));
+			insertComputerSubscriptionStatement.setString(2, "pending confirmation");
+			computerSubscriptionRecordsInserted = insertComputerSubscriptionStatement.executeUpdate();
+			
+			/* changed DB table structure
 			insertSubscriptionStatement = conn.prepareStatement(SQL_INSERT_SUBSCRIPTION);
 			insertSubscriptionStatement.setInt(1, MariaDbUtil.getRecordKey(conn));
 			insertSubscriptionStatement.setBoolean(2, subscription.getIsComputerSub());
@@ -47,21 +58,22 @@ public class SubscriptionDao {
 			insertSubscriptionStatement.setBoolean(7, subscription.getIsToolSub());
 			subscriptionRecordsInserted = insertSubscriptionStatement.executeUpdate();
 			//System.out.println("Subscription records: " + subscriptionRecordsInserted);
+			*/
 			
-			message = "Person record:" + personRecordsInserted + ", Subscription record: " + subscriptionRecordsInserted;
+			System.out.println("Database.... Person record:" + personRecordsInserted + ", Computer Subscription record: " + computerSubscriptionRecordsInserted);
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				try {
 					insertPersonStatement.close();
-					insertSubscriptionStatement.close();
+					insertComputerSubscriptionStatement.close();
 					conn.close();
 				} catch (SQLException e){
 					e.printStackTrace();
 				}
 			}
-			return message;
+
 		}
 		
 		
