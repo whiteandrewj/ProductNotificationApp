@@ -16,9 +16,7 @@ public class NewAmazonSnsClientBuilder {
 	public AmazonSNS createClient() {
 		return builder.build();
 	}
-	
-	AWSStaticCredentialsProvider(BasicAWSCredentials credentials)
-	BasicAWSCredentials creds = new BasicAWSCredentials("AKIAJGKZTRPT6M7PNBGQ", "0HxNl2ammMYasQPZga7pCC7Bw59uHIiJGJf3BWNi");
+	);
 	*/
 }
 
