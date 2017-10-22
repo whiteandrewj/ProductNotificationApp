@@ -4,61 +4,85 @@
 	<meta charset="ISO-8859-1">
 	<title>Subscribe</title>
 
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+	
+	<!-- AngularJS library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
 	<script src="js/app.js" type="text/javascript"></script>
 	<script src="js/subscribeCtrl.js" type="text/javascript"></script>
 	
-
-
 </head>
 <body>
 	<div ng-controller='subscribeCtrl'>
-		<h1>Sign up to be notified when we have new items in stock!</h1>
-		
-		<p>you entered: {{firstName}}<br>
-		you entered: {{lastName}}<br>
-		you entered: {{emailAddress}}<br>
-		you entered: {{isComputerSub}}<br>
-		you entered: {{isConsoleSub}}<br>
-		you entered: {{isHeaterSub}}<br>
-		you entered: {{isLawnSub}}<br>
-		you entered: {{isToolSub}}<br>
-		you entered: {{isTelevisionSub}}<br></p>
-
-		<table>
-			<tr>
-				<td><label>First Name: <br> <input ng-model="firstName" type="text"
-						maxlength="15" /></label></td>
-			</tr>
-			<tr>
-				<td><label>Last Name:<br> <input ng-model="lastName" type="text"
-						maxlength="15" /></label></td>
-			</tr>
-			<tr>
-				<td><label>Email Address:<br> <input ng-model="emailAddress" type="email"
-						maxlength="30" /></label></td>
-			</tr>
-			<tr>
-				<td>
-					<fieldset>
-						<legend>I'm interested in...</legend>
-						<label><input type="checkbox" ng-model="isComputerSub" />Computers</label><br>
-						<label><input type="checkbox" ng-model="isConsoleSub" />Game Consoles</label><br>
-						<label><input type="checkbox" ng-model="isHeaterSub" />Heaters</label><br>
-						<label><input type="checkbox" ng-model="isLawnSub" />Lawn Care</label><br>
-						<label><input type="checkbox" ng-model="isToolSub" />Tools</label><br>
-						<label><input type="checkbox" ng-model="isTelevisionSub" />TVs</label><br>
-					</fieldset>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="subscribe" ng-click="createNewSubscription()">
-						<label for="subscribe">Subscribe</label>
-					</button>
-				</td>
-			</tr>
-		</table>
+		<div class="container-fluid">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<p class="navbar-text">New Product Notification App</p>
+				<ul class="nav navbar-nav">
+					<li> 
+						<a href="notification.html">Notification</a>
+					</li>
+					<li class="active">
+						<a href="subscribe.html">Subscribe</a>
+					</li>													
+				</ul>								
+			</nav>
+			<h1>Sign up to be notified when we have new items in stock!</h1>
+			
+			<p>you entered: {{firstName}}<br>
+			you entered: {{lastName}}<br>
+			you entered: {{emailAddress}}<br>
+			you entered: {{isComputerSub}}<br>
+			you entered: {{isConsoleSub}}<br>
+			you entered: {{isHeaterSub}}<br>
+			you entered: {{isLawnSub}}<br>
+			you entered: {{isToolSub}}<br>
+			you entered: {{isTelevisionSub}}<br></p>
+	
+			<table>
+				<tr>
+					<td><label>First Name: <br> <input ng-model="firstName" type="text"
+							maxlength="15" /></label></td>
+				</tr>
+				<tr>
+					<td><label>Last Name:<br> <input ng-model="lastName" type="text"
+							maxlength="15" /></label></td>
+				</tr>
+				<tr>
+					<td><label>Email Address:<br> <input ng-model="emailAddress" type="email"
+							maxlength="30" /></label></td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset>
+							<legend>I'm interested in...</legend>
+							<label><input type="checkbox" ng-model="isComputerSub" />Computers</label><br>
+							<label><input type="checkbox" ng-model="isConsoleSub" />Game Consoles</label><br>
+							<label><input type="checkbox" ng-model="isHeaterSub" />Heaters</label><br>
+							<label><input type="checkbox" ng-model="isLawnSub" />Lawn Care</label><br>
+							<label><input type="checkbox" ng-model="isToolSub" />Tools</label><br>
+							<label><input type="checkbox" ng-model="isTelevisionSub" />TVs</label><br>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="subscribe" ng-click="createNewSubscription()">
+							<label for="subscribe">Subscribe</label>
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

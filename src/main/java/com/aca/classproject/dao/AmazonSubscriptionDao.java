@@ -7,8 +7,10 @@ import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.amazonaws.services.sns.model.SubscribeResult;
 
 public class AmazonSubscriptionDao {
+	
+	private String amazonReturnMessage;
 
-	public void createNewComputerSubscription(Subscription subscription) {
+	public String createNewComputerSubscription(Subscription subscription) {
 		
 		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());	
 			
@@ -18,10 +20,13 @@ public class AmazonSubscriptionDao {
 		request.setEndpoint(subscription.getEmailAddress());
 					
 		SubscribeResult result = client.subscribe(request);
-		System.out.println("AWS.... result status code " + result.getSdkHttpMetadata().getHttpStatusCode()
-				+ ", Subscription ARN: " + result.getSubscriptionArn());
+		
+		amazonReturnMessage = "AWS.... Result status code: " + result.getSdkHttpMetadata().getHttpStatusCode()
+				+ ", Subscription ARN: " + result.getSubscriptionArn() + "\n";
+		System.out.println(amazonReturnMessage);
 	
 		client.shutdown();
+		return amazonReturnMessage;
 	}
 	
 	

@@ -15,19 +15,29 @@ public class SubscriptionService {
 	//first make call to AWS to add new sub to topic
 	//second insert new sub into DB
 	
-	public void insertSubscription(Subscription subscription) {
-		
+	private String returnMessage;
+	
+	public String insertSubscription(Subscription subscription) {
 		
 		AmazonSubscriptionDao awsSubscription = new AmazonSubscriptionDao();
 		DbSubscriptionDao dbSubscription = new DbSubscriptionDao();
 		
+		String dbReturnMessage = null;
+		String amazonReturnMessage = null;
+		
 		if (subscription.getIsComputerSub()) {
-			//creates new subscription in AWS SNS
-			awsSubscription.createNewComputerSubscription(subscription);
+			//add new subscription in AWS SNS
+			dbReturnMessage = awsSubscription.createNewComputerSubscription(subscription);
 			
 			//inserts new subscription into database
-			dbSubscription.insertNewComputerSubscription(subscription);
+			amazonReturnMessage = dbSubscription.insertNewComputerSubscription(subscription);
 		}
+		
+		returnMessage = dbReturnMessage + amazonReturnMessage;
+				
+		System.out.println(returnMessage);
+		
+		return returnMessage;
 	}
 
 }

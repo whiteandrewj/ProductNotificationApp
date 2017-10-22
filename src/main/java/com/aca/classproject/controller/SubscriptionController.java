@@ -15,6 +15,8 @@ import com.aca.classproject.service.SubscriptionService;
 @Path("/subscribe")
 public class SubscriptionController {
 	
+	String returnMessage;
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public String insertSubscription(Subscription subscription) {
@@ -37,8 +39,8 @@ public class SubscriptionController {
 		
 		SubscriptionService service = new SubscriptionService();
 		
-		service.insertSubscription(subscription);
+		returnMessage = service.insertSubscription(subscription);
 		
-		return null;
+		return returnMessage;
 	}
 }

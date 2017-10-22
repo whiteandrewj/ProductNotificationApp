@@ -8,6 +8,8 @@ import com.aca.classproject.model.Subscription;
 
 public class DbSubscriptionDao {
 	
+		private String dbReturnMessage;
+		
 		private final static String SQL_INSERT_PERSON = " INSERT INTO person "
 			+ " (FirstName, LastName, EmailAddress) "
 			+ " VALUES (?, ?, ? ); ";
@@ -22,7 +24,7 @@ public class DbSubscriptionDao {
 				+ " (?, ? ); ";
 		
 		
-		public void insertNewComputerSubscription(Subscription subscription) {
+		public String insertNewComputerSubscription(Subscription subscription) {
 						
 			int personRecordsInserted;
 			int computerSubscriptionRecordsInserted;
@@ -60,7 +62,8 @@ public class DbSubscriptionDao {
 			//System.out.println("Subscription records: " + subscriptionRecordsInserted);
 			*/
 			
-			System.out.println("Database.... Person record:" + personRecordsInserted + ", Computer Subscription record: " + computerSubscriptionRecordsInserted);
+			dbReturnMessage = "Database.... Person record: " + personRecordsInserted + ", Computer Subscription record: " + computerSubscriptionRecordsInserted + "\n";
+			System.out.println(dbReturnMessage);
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -73,7 +76,7 @@ public class DbSubscriptionDao {
 					e.printStackTrace();
 				}
 			}
-
+			return dbReturnMessage;
 		}
 		
 		
