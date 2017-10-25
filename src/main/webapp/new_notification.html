@@ -1,54 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='myApp'>
 <head>
-<meta charset="ISO-8859-1">
-<title>New Product Entry</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+		
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+	
+	<!-- AngularJS library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
+		
+	
+	<script src="js/app.js" type="text/javascript"></script>
+	<script src="js/newNotificationCtrl.js" type="text/javascript"></script>
+	
 </head>
 <body>
-		<h1>New Product Entry</h1>
-		<table>
-			<tr>
-				<td>
-					<label>Product Description:<br>
-					<input type="text" maxlength="10" /></label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Price:<br>
-					<input type="text" maxlength="4" /></label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Product Details:<br>
-					<textarea>sample text</textarea></label>
-				</td>
-			</tr>			
-			<tr>
-				<td>
-					<fieldset>
-						<legend>Product Type</legend>
-						<label><input type="radio" name="type" />Computer</label><br>
-						<label><input type="radio" name="type" />Game Console</label><br>
-						<label><input type="radio" name="type" />Heater</label><br>
-						<label><input type="radio" name="type" />Lawn Care</label><br>						
-						<label><input type="radio" name="type" />Tool</label><br>
-						<label><input type="radio" name="type" />TV</label><br>					
-					</fieldset>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Upload Picture<br>
-					<input type="file" /></label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="submit"><label for="submit">Submit</label></button>
-				</td>
-			</tr>
-		</table>
+	<div ng-controller='newNotificationCtrl'>
+		<div class="container-fluid">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<p class="navbar-text">New Product Notification App</p>
+				<ul class="nav navbar-nav">
+					<li> 
+						<a href="manage_subscriptions.html">Manage Subscriptions</a>
+					</li>
+					<li>
+						<a href="subscribe.html">Subscribe</a>
+					</li>
+					<li class="active">
+						<a href="new_notification.html">New Notification</a>
+					</li>													
+				</ul>								
+			</nav>
+			<h1>New Product Entry</h1>
+			<table>
+				<tr>
+					<td>
+						<label>Product Name:<br>
+						<input ng-model="name" type="text" maxlength="10" /></label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Price:<br>
+						<input ng-model="price" type="text" maxlength="4" /></label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Description:<br>
+						<textarea ng-model="description" >sample text</textarea></label>
+					</td>
+				</tr>			
+				<tr>
+					<td>
+						<select ng-model="type">
+							<option value="null" selected="selected" ></option>
+							<option value="computer" >Computer</option>
+							<option value="gameConsole" >Game Console</option>
+							<option value="heater" >Heater</option>
+							<option value="lawnCare" >Lawn Care</option>						
+							<option value="tool" >Tool</option>
+							<option value="television" >TV</option>				
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Upload Picture<br>
+						<input type="file" /></label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button ng-click="createNewNotification()" id="submit"><label for="submit">Submit</label></button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

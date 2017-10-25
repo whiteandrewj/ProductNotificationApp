@@ -1,16 +1,11 @@
 package com.aca.classproject.controller;
 
-import java.util.List;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import com.aca.classproject.model.Subscription;
-import com.aca.classproject.service.SubscriptionService;
-
+import com.aca.classproject.model.Subscript;
+import com.aca.classproject.service.*;
 
 @Path("/subscribe")
 public class SubscriptionController {
@@ -19,7 +14,7 @@ public class SubscriptionController {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public String insertSubscription(Subscription subscription) {
+	public String insertSubscription(Subscript subscription) {
 		/* creates an instance of the Subscription object, then Jersey works behind the scenes 
 		 * of the javax.ws.rs imports to map the variables of the 
 		 * JSON object to the variables in the Subscription object
@@ -43,4 +38,13 @@ public class SubscriptionController {
 		
 		return returnMessage;
 	}
+	
+	/* working on a get subscriptions functions
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public <List>Subscription getSubscriptions(Subscription subscription) {
+		
+	return null;
+	}
+	*/
 }

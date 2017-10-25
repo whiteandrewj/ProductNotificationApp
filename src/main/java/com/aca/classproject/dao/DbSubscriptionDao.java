@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.aca.classproject.model.Subscription;
+import com.aca.classproject.model.Subscript;
 
 public class DbSubscriptionDao {
 	
@@ -24,14 +24,14 @@ public class DbSubscriptionDao {
 				+ " (?, ? ); ";
 		
 		
-		public String insertNewComputerSubscription(Subscription subscription) {
+		public String insertNewComputerSubscription(Subscript subscription) {
 						
 			int personRecordsInserted;
 			int computerSubscriptionRecordsInserted;
 			PreparedStatement insertPersonStatement = null;
 			PreparedStatement insertComputerSubscriptionStatement = null;
 			
-			Connection conn = MariaDbUtil.getConnection();
+			Connection conn = MariaDbUtilities.getConnection();
 		
 			try {
 			
@@ -45,7 +45,7 @@ public class DbSubscriptionDao {
 			//what if it breaks in between the two insert statements??
 			
 			insertComputerSubscriptionStatement = conn.prepareStatement(SQL_INSERT_COMPUTER_SUB);
-			insertComputerSubscriptionStatement.setInt(1, MariaDbUtil.getRecordKey(conn));
+			insertComputerSubscriptionStatement.setInt(1, MariaDbUtilities.getRecordKey(conn));
 			insertComputerSubscriptionStatement.setString(2, "pending confirmation");
 			computerSubscriptionRecordsInserted = insertComputerSubscriptionStatement.executeUpdate();
 			

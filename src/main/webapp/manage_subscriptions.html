@@ -6,6 +6,9 @@
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
 	
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
@@ -13,32 +16,51 @@
 	<!-- AngularJS library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
 	
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-	
 	
 	<script src="js/app.js" type="text/javascript"></script>
 	<script src="js/notificationCtrl.js" type="text/javascript"></script>
 	
 </head>
 <body>
-	<div ng-controller='notificationCtrl'>
+	<div ng-controller='manageSubscriptionsCtrl'>
 		<div class="container-fluid">
 			<nav class="navbar navbar-inverse navbar-static-top">
 				<p class="navbar-text">New Product Notification App</p>
 				<ul class="nav navbar-nav">
 					<li class="active"> 
-						<a href="notification.html">Notification</a>
+						<a href="manage_subscriptions.html">Manage Subscriptions</a>
 					</li>
 					<li>
 						<a href="subscribe.html">Subscribe</a>
+					</li>
+					<li>
+						<a href="new_notification.html">New Notification</a>
 					</li>													
 				</ul>								
 			</nav>
-			
-			
-			
-			
+						
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email Address</th>
+						<th>Sub Type</th>
+						<th>Subscription</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td>{{subscription.firstname}}</td>
+						<td>{{subscription.lastname}}</td>
+						<td>{{subscription.emailaddress}}</td>
+						<td>{{subscription.type}}</td>
+						<td>{{subscription.status}}</td>
+					</tr>
+				</tbody>
+			</table>			
 		</div>
 	</div>
 </body>

@@ -3,7 +3,7 @@ package com.aca.classproject.service;
 import com.aca.classproject.dao.AmazonSubscriptionDao;
 import com.aca.classproject.dao.AwsCreds;
 import com.aca.classproject.dao.DbSubscriptionDao;
-import com.aca.classproject.model.Subscription;
+import com.aca.classproject.model.Subscript;
 import com.aca.classproject.model.Topic;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.GetSubscriptionAttributesRequest;
@@ -17,7 +17,7 @@ public class SubscriptionService {
 	
 	private String returnMessage;
 	
-	public String insertSubscription(Subscription subscription) {
+	public String insertSubscription(Subscript subscription) {
 		
 		AmazonSubscriptionDao awsSubscription = new AmazonSubscriptionDao();
 		DbSubscriptionDao dbSubscription = new DbSubscriptionDao();

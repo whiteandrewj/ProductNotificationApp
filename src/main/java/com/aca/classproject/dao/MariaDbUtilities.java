@@ -10,7 +10,7 @@ import java.sql.Statement;
  * @author Andrew White/Daniel Lazenby
  *
  */
-public class MariaDbUtil {
+public class MariaDbUtilities {
 	
 	private static String connectionUrl = "jdbc:mariadb://localhost:3306/northwind?user=root&password=kenYa2500";
 	private final static String SQL_RETURN_KEY = " SELECT @@identity ";
