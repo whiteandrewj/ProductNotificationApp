@@ -46,16 +46,14 @@ app.controller('subscribeCtrl', function($scope, $http) {
 				"TV?" + newSubscription.isTelevisionSub + "\n"
 		);
 		
-		$http.post("/ProductNotificationApp/rest/subscribe", newSubscription)
+		$http.post("/ProductNotificationApp/rest/notification/subscribe", newSubscription)
 		.then(
-				function success(response) {
-					//TODO not getting an alert for this...not sure why
-					//if (response.data == 1) {						
-						alert("rows inserted: " + response.data + ", status: " + response.status);						
-					//} else {
-					//	alert("error, return status: " + response.status);		
-					//} 
-				} 					
+				function success(response) {						
+					alert("success! Response data: " + response.data + ", status: " + response.status);							 
+				},
+				function error(response) {
+					alert("error, return status: " + response.status);	
+				}
 		);
 		
 		

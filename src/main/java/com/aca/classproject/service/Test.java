@@ -38,7 +38,7 @@ public class Test {
 		if (true) {
 			
 			SubscribeRequest request = new SubscribeRequest();
-			request.setTopicArn(Topic.COMPUTER_SUB_ARN);
+			request.setTopicArn(Topic.COMPUTER.awsSnsArn());
 			request.setProtocol("email");
 			request.setEndpoint("white_andrewj@yahoo.com");
 						

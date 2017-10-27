@@ -1,6 +1,6 @@
 package com.aca.classproject.model;
 
-public class Subscript {
+public class Subscription {
 	
 	private String firstName;
 	private String lastName;

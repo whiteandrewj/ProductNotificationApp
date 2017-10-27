@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.aca.classproject.model.Subscript;
+import com.aca.classproject.model.Subscription;
 
-public class DbSubscriptionDao {
+public class MariaDbDao {
 	
 		private String dbReturnMessage;
 		
@@ -19,12 +19,12 @@ public class DbSubscriptionDao {
 			+ " (PersonID, IsComputerSub, IsConsoleSub, IsHeaterSub, IsLawnSub, IsToolSub, IsTelevisionSub) "
 			+ " VALUES (?, ?, ?, ?, ?, ?, ? ); ";
 		*/
-		private final static String SQL_INSERT_COMPUTER_SUB = " INSERT INTO computer_subscription "
-				+ " (PersonID, ARN) VALUES "
-				+ " (?, ? ); ";
+		private final static String SQL_INSERT_COMPUTER_SUB = " INSERT INTO subscription "
+				+ " (PersonID, Topic, ARN) VALUES "
+				+ " (?, ?, ? ); ";
 		
 		
-		public String insertNewComputerSubscription(Subscript subscription) {
+		public String insertNewComputerSubscription(Subscription subscription) {
 						
 			int personRecordsInserted;
 			int computerSubscriptionRecordsInserted;
@@ -46,7 +46,8 @@ public class DbSubscriptionDao {
 			
 			insertComputerSubscriptionStatement = conn.prepareStatement(SQL_INSERT_COMPUTER_SUB);
 			insertComputerSubscriptionStatement.setInt(1, MariaDbUtilities.getRecordKey(conn));
-			insertComputerSubscriptionStatement.setString(2, "pending confirmation");
+			insertComputerSubscriptionStatement.setString(2, "computer");
+			insertComputerSubscriptionStatement.setString(3, "pending confirmation");
 			computerSubscriptionRecordsInserted = insertComputerSubscriptionStatement.executeUpdate();
 			
 			/* changed DB table structure
