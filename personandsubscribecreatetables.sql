@@ -38,3 +38,21 @@ INSERT INTO subscription (PersonID, IsComputerSub, IsConsoleSub, IsHeaterSub, Is
 	VALUES (19, true, false, true, true, false, false); 
 
 DROP TABLE computer_subscription;
+
+SELECT PersonID, FirstName, LastName, EmailAddress FROM person
+
+SELECT person.EmailAddress, subscription.Topic, subscription.ARN
+FROM subscription
+INNER JOIN person ON subscription.PersonID = person.PersonID;
+
+#WHERE clause comes after join statement
+SELECT p.PersonID, p.FirstName, p.LastName, p.EmailAddress, s.Topic, s.ARN
+FROM person p
+LEFT OUTER JOIN subscription s ON s.PersonID = p.PersonID
+#WHERE s.Topic = "Computer"
+
+SELECT Topic, ARN
+FROM subscription
+WHERE PersonID = 44;
+
+

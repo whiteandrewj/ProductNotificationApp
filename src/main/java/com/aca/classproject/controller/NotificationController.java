@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.aca.classproject.model.Notification;
-import com.aca.classproject.model.Subscription;
+import com.aca.classproject.model.Person;
 import com.aca.classproject.service.*;
 
 @Path("/notification")
@@ -15,7 +15,7 @@ public class NotificationController {
 	@POST
 	@Path("/subscribe")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String insertSubscription(Subscription subscription) {
+	public String insertSubscription(Person subscription) {
 		/* creates an instance of the Subscription object, then Jersey works behind the scenes 
 		 * of the javax.ws.rs imports to map the variables of the 
 		 * JSON object to the variables in the Subscription object
@@ -26,18 +26,21 @@ public class NotificationController {
 		System.out.println(subscription.getFirstName());
 		System.out.println(subscription.getLastName());
 		System.out.println(subscription.getEmailAddress());
-		System.out.println(subscription.getIsComputerSub());
+		System.out.println(subscription.getSubscriptions());
+				
+		/*
 		System.out.println(subscription.getIsConsoleSub());
 		System.out.println(subscription.getIsHeaterSub());
 		System.out.println(subscription.getIsLawnSub());
 		System.out.println(subscription.getIsToolSub());
 		System.out.println(subscription.getIsTelevisionSub());
-		
+		*/
+				
 		NotificationService service = new NotificationService();
 		
 		String returnMessage;
 		
-		returnMessage = service.insertSubscription(subscription);
+		returnMessage = service.newSubscription(subscription);
 		
 		return returnMessage;
 	}

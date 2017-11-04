@@ -2,76 +2,26 @@ package com.aca.classproject.model;
 
 public class Subscription {
 	
-	private String firstName;
-	private String lastName;
-	private String emailAddress;
+	Topic topic;
+	boolean isSubscribed;
+	String status;
 	
-	private boolean isComputerSub;
-	private boolean isConsoleSub;
-	private boolean isHeaterSub;
-	private boolean isLawnSub;
-	private boolean isToolSub;
-	private boolean isTelevisionSub;
-	
-	
-	
-	public String getFirstName() {
-		return firstName;
+	public Topic getTopic() {
+		return topic;
 	}
-	public String getLastName() {
-		return lastName;
+	public boolean isSubscribed() {
+		return isSubscribed;
 	}
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getStatus() {
+		return status;
 	}
-	public boolean getIsComputerSub() {
-		return isComputerSub;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
-	public boolean getIsConsoleSub() {
-		return isConsoleSub;
+	public void setSubscribed(boolean isSubscribed) {
+		this.isSubscribed = isSubscribed;
 	}
-	public boolean getIsHeaterSub() {
-		return isHeaterSub;
-	}
-	public boolean getIsLawnSub() {
-		return isLawnSub;
-	}
-	public boolean getIsToolSub() {
-		return isToolSub;
-	}
-	public boolean getIsTelevisionSub() {
-		return isTelevisionSub;
-	}
-	
-	
-	
-	
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
-	public void setIsComputerSub(boolean isComputerSub) {
-		this.isComputerSub = isComputerSub;
-	}
-	public void setIsConsoleSub(boolean isConsoleSub) {
-		this.isConsoleSub = isConsoleSub;
-	}
-	public void setIsHeaterSub(boolean isHeaterSub) {
-		this.isHeaterSub = isHeaterSub;
-	}
-	public void setIsLawnSub(boolean isLawnSub) {
-		this.isLawnSub = isLawnSub;
-	}
-	public void setIsToolSub(boolean isToolSub) {
-		this.isToolSub = isToolSub;
-	}
-	public void setIsTelevisionSub(boolean isTelevisionSub) {
-		this.isTelevisionSub = isTelevisionSub;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

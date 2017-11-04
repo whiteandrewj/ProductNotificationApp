@@ -1,33 +1,36 @@
 package com.aca.classproject.dao;
 
+import java.util.List;
+
 import com.aca.classproject.model.Notification;
-import com.aca.classproject.model.Subscription;
+import com.aca.classproject.model.Person;
 import com.aca.classproject.model.Topic;
 import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.ListSubscriptionsRequest;
+import com.amazonaws.services.sns.model.ListSubscriptionsResult;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.amazonaws.services.sns.model.SubscribeResult;
+import com.amazonaws.services.sns.model.Subscription;
 
 public class AmazonSnsDao { 
 
-	public String createNewComputerSubscription(Subscription subscription) {
+	public void newSubscription(Person subscription, Topic topic) {
 		
 		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());	
 			
 		SubscribeRequest request = new SubscribeRequest();
-		request.setTopicArn(Topic.COMPUTER.awsSnsArn());
+		request.setTopicArn(topic.awsSnsArn());
 		request.setProtocol("email");
 		request.setEndpoint(subscription.getEmailAddress());
 					
 		SubscribeResult result = client.subscribe(request);
-		String amazonReturnMessage;
-		amazonReturnMessage = "AWS.... Result status code: " + result.getSdkHttpMetadata().getHttpStatusCode()
-				+ ", Subscription ARN: " + result.getSubscriptionArn() + "\n";
-		System.out.println(amazonReturnMessage);
+		
+		System.out.println("AWS subscribe status code: " + result.getSdkHttpMetadata().getHttpStatusCode()
+				+ ", Subscription ARN: " + result.getSubscriptionArn());
 	
 		client.shutdown();
-		return amazonReturnMessage;
 	}
 	
 	
@@ -45,15 +48,26 @@ public class AmazonSnsDao {
 							+ notification.getTopic() + " in stock!\n" + notification.getProductName()
 							+ "\nPrice: $" + notification.getPrice()
 							+ "\n" + notification.getDescription());
-		request.setTopicArn(Topic.COMPUTER.awsSnsArn());
+		for(Topic topic : Topic.values()) {
+			if(topic.displayName().equals(notification.getTopic())) {
+				request.setTopicArn(topic.awsSnsArn());
+			}
+		}
 		request.setSubject(notification.getTopic());
 		
 		System.out.println(request.getMessage());
 		
 		PublishResult result = client.publish(request);
 		
-		System.out.println("Aws http response code: " + result.getSdkHttpMetadata().getHttpStatusCode());
+		System.out.println("Aws publish response code: " + result.getSdkHttpMetadata().getHttpStatusCode());
 	}
 		
-	
+	public List<Subscription> getSubscriptions() {
+		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());
+				
+		ListSubscriptionsResult result = client.listSubscriptions();
+		List<Subscription> list = result.getSubscriptions();
+		
+		return list;
+	}
 }

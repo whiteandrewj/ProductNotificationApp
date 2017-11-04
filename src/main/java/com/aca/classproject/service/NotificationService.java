@@ -1,10 +1,14 @@
 package com.aca.classproject.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import com.aca.classproject.dao.AmazonSnsDao;
 import com.aca.classproject.dao.AwsCreds;
 import com.aca.classproject.dao.MariaDbDao;
+import com.aca.classproject.dao.MariaDbUtilities;
 import com.aca.classproject.model.Notification;
-import com.aca.classproject.model.Subscription;
+import com.aca.classproject.model.Person;
 import com.aca.classproject.model.Topic;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.GetSubscriptionAttributesRequest;
@@ -16,27 +20,50 @@ public class NotificationService {
 	//first make call to AWS to add new sub to topic
 	//second insert new sub into DB
 
-	public String insertSubscription(Subscription subscription) {
+	public String newSubscription(Person subscription) {
 		
-		AmazonSnsDao awsSubscription = new AmazonSnsDao();
-		MariaDbDao dbSubscription = new MariaDbDao();
+		Connection conn = MariaDbUtilities.getConnection();
+		MariaDbDao db = new MariaDbDao();
 		
-		String dbReturnMessage = null;
-		String amazonReturnMessage = null;
+		//inserts new person into db and returns connection
+		conn = db.newPerson(subscription, conn);
 		
-		if (subscription.getIsComputerSub()) {
-			//add new subscription in AWS SNS
-			dbReturnMessage = awsSubscription.createNewComputerSubscription(subscription);
+		//gets primary key of person record inserted
+		int personKey = MariaDbUtilities.getRecordKey(conn);
+		
+		
+		//iterates over each displayName in the enum "Topic"
+		for(Topic topic : Topic.values()) {
 			
-			//inserts new subscription into database
-			amazonReturnMessage = dbSubscription.insertNewComputerSubscription(subscription);
+			//checks if the "Subscriptions" HashMap contains a value of true for the current topicName (eg "Computer")  
+			if (subscription.getSubscriptions().get(topic.displayName())) {
+			
+				//adds new subscription in AWS SNS
+				AmazonSnsDao awsSubscription = new AmazonSnsDao();
+				awsSubscription.newSubscription(subscription, topic);
+				
+				//inserts new subscriptions into database
+				conn = db.newSubscription(conn, personKey, topic);
+			}
 		}
-		String returnMessage;
-		returnMessage = dbReturnMessage + amazonReturnMessage;			
-		System.out.println(returnMessage);	
-		return returnMessage;
+		
+		try {
+			conn.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}		
+		return "inserts successful";
 	}
 
+	public void updateArn() {
+		//get subscriptions from database
+		//check aws sns for updates to status (pending, confirmed)
+		//update tables in database
+		
+		AmazonSnsDao amazon = new AmazonSnsDao();
+		
+	}
+	
 	public void newNotification(Notification notification){
 		//call aws api
 		//insert into database

@@ -2,12 +2,12 @@ package com.aca.classproject.model;
 
 public enum Topic {
 
-	COMPUTER("Computer", "arn:aws:sns:us-east-1:294989386768:NewComputers"),
-	GAME_CONSOLE(null, null),
-	HEATER(null, null),
-	LAWN_CARE(null, null),
-	TOOL(null, null),
-	TELEVISION(null, null);
+	COMPUTER("Computer", "arn:aws:sns:us-east-1:294989386768:Computer"),
+	GAME_CONSOLE("Console", null),
+	HEATER("Heater", "arn:aws:sns:us-east-1:294989386768:Heater"),
+	LAWN_CARE("Lawnmower", null),
+	TOOL("Tool", null),
+	TELEVISION("Television", null);
 	
 	
 	private final String displayName;
