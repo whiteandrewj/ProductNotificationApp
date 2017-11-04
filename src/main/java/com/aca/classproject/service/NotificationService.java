@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import com.aca.classproject.dao.AmazonSnsDao;
 import com.aca.classproject.dao.AwsCreds;
 import com.aca.classproject.dao.MariaDbDao;
-import com.aca.classproject.dao.MariaDbUtilities;
 import com.aca.classproject.model.Notification;
 import com.aca.classproject.model.Person;
+import com.aca.classproject.model.Subscription;
 import com.aca.classproject.model.Topic;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.GetSubscriptionAttributesRequest;
@@ -20,38 +20,33 @@ public class NotificationService {
 	//first make call to AWS to add new sub to topic
 	//second insert new sub into DB
 
-	public String newSubscription(Person subscription) {
+	public String newSubscription(Person person) {
 		
-		Connection conn = MariaDbUtilities.getConnection();
+		
 		MariaDbDao db = new MariaDbDao();
+		AmazonSnsDao awsSubscription = new AmazonSnsDao();
 		
-		//inserts new person into db and returns connection
-		conn = db.newPerson(subscription, conn);
-		
-		//gets primary key of person record inserted
-		int personKey = MariaDbUtilities.getRecordKey(conn);
-		
-		
-		//iterates over each displayName in the enum "Topic"
+		//inserts new person into db and assigns primaryKey value to sqlPrimaryKey
+		person.setSqlPrimaryKey(db.newPerson(person));
+			
+		//iterates through each Topic enum
 		for(Topic topic : Topic.values()) {
 			
-			//checks if the "Subscriptions" HashMap contains a value of true for the current topicName (eg "Computer")  
-			if (subscription.getSubscriptions().get(topic.displayName())) {
-			
-				//adds new subscription in AWS SNS
-				AmazonSnsDao awsSubscription = new AmazonSnsDao();
-				awsSubscription.newSubscription(subscription, topic);
+			//iterates through each subscription
+			for (Subscription subscription : person.getSubscriptions()) {
 				
-				//inserts new subscriptions into database
-				conn = db.newSubscription(conn, personKey, topic);
+				//checks if the "Subscription" topic is the same as our current iteration of the Topic enum && isSubscribed contains a value of true
+				if (subscription.getTopic().equals(topic) && subscription.getIsSubscribed()) {
+					
+					//adds new subscription in AWS SNS and assigns ARN value to subscription
+					subscription.setStatus(awsSubscription.newSubscription(person, topic));
+					
+					//inserts new subscriptions into database
+					db.newSubscription(person.getSqlPrimaryKey(), topic, subscription.getStatus());
+				}
 			}
-		}
-		
-		try {
-			conn.close();
-		} catch (SQLException e){
-			e.printStackTrace();
 		}		
+		
 		return "inserts successful";
 	}
 

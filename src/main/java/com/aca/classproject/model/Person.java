@@ -1,5 +1,6 @@
 package com.aca.classproject.model;
 
+import java.util.List;
 import java.util.Map;
 
 public class Person {
@@ -9,7 +10,10 @@ public class Person {
 	private String lastName;
 	private String emailAddress;
 	
-	private Map<String, Boolean> subscriptions;
+	private List<Subscription> subscriptions;
+	
+	
+	//private Map<String, Boolean> subscriptions;
 	
 	/*
 	private boolean isComputerSub;
@@ -33,12 +37,17 @@ public class Person {
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+	
+	/*refactored to use Subscription object, as I didn't have enough variables to hold all the info I needed
 	public Map<String, Boolean> getSubscriptions() {
 		return subscriptions;
 	}
 	//not as readable; having the subscription object within person object gives impression that I want to be able to create a collection of subscriptions. 
 	//It would be more clear to push all values from client in a single object, then map values to hashmap on server side
-	/*
+	
 	public boolean getIsComputerSub() {
 		return isComputerSub;
 	}
@@ -72,11 +81,14 @@ public class Person {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public void setSubscriptions(Map<String, Boolean> subscriptions) {
+	public void setSubscriptions(List<Subscription> subscriptions) {
 		this.subscriptions = subscriptions;
 	}
 	
-	/*
+	
+	/*public void setSubscriptions(Map<String, Boolean> subscriptions) {
+		this.subscriptions = subscriptions;
+	}
 	public void setIsComputerSub(boolean isComputerSub) {
 		this.isComputerSub = isComputerSub;
 	}

@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.aca.classproject.model.Notification;
 import com.aca.classproject.model.Person;
+import com.aca.classproject.model.Subscription;
 import com.aca.classproject.service.*;
 
 @Path("/notification")
@@ -15,18 +16,21 @@ public class NotificationController {
 	@POST
 	@Path("/subscribe")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String insertSubscription(Person subscription) {
+	public String insertSubscription(Person person) {
 		/* creates an instance of the Subscription object, then Jersey works behind the scenes 
 		 * of the javax.ws.rs imports to map the variables of the 
 		 * JSON object to the variables in the Subscription object
 		*/
 		
 		//validate values coming from client
-		System.out.println("Values received from frontend: ");
-		System.out.println(subscription.getFirstName());
-		System.out.println(subscription.getLastName());
-		System.out.println(subscription.getEmailAddress());
-		System.out.println(subscription.getSubscriptions());
+		System.out.println("Values received from client: ");
+		System.out.println(person.getFirstName());
+		System.out.println(person.getLastName());
+		System.out.println(person.getEmailAddress());
+		for (Subscription subscription : person.getSubscriptions()) {
+			System.out.println(subscription.getTopic() + ", " + subscription.getIsSubscribed() + ", " + subscription.getStatus());
+		}
+			 
 				
 		/*
 		System.out.println(subscription.getIsConsoleSub());
@@ -40,7 +44,7 @@ public class NotificationController {
 		
 		String returnMessage;
 		
-		returnMessage = service.newSubscription(subscription);
+		returnMessage = service.newSubscription(person);
 		
 		return returnMessage;
 	}

@@ -34,35 +34,43 @@ public class MariaDbDao {
 																+ " FROM subscription ";
 																//+ "	WHERE PersonID = ? ";
 												
-		public Connection newPerson(Person subscription, Connection conn) {
+		public int newPerson(Person person) {
 			
+			Connection conn = MariaDbUtilities.getConnection();
+			
+			int primaryKey = 0;
 			int personRecordsInserted = 0;
 			PreparedStatement insertPersonStatement = null;
 			
 			try {	
 				insertPersonStatement = conn.prepareStatement(SQL_INSERT_PERSON);
-				insertPersonStatement.setString(1, subscription.getFirstName());
-				insertPersonStatement.setString(2, subscription.getLastName());
-				insertPersonStatement.setString(3, subscription.getEmailAddress());
+				insertPersonStatement.setString(1, person.getFirstName());
+				insertPersonStatement.setString(2, person.getLastName());
+				insertPersonStatement.setString(3, person.getEmailAddress());
 				personRecordsInserted = insertPersonStatement.executeUpdate();
 			
+				//gets primary key of person record inserted and assigns value to primaryKey
+				primaryKey = MariaDbUtilities.getRecordKey(conn);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				try {
+					conn.close();
 					insertPersonStatement.close();
 				} catch (SQLException e){
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Person records: " + personRecordsInserted);
-			return conn;
+			System.out.println("Person records inserted: " + personRecordsInserted);
+			return primaryKey;
 		}
 		
 		
-		public Connection newSubscription(Connection conn, int personKey, Topic topic) {
+		public void newSubscription(int personKey, Topic topic, String status) {
 						
+			Connection conn = MariaDbUtilities.getConnection();
+			
 			int subscriptionRecordsInserted = 0;
 			PreparedStatement insertSubscriptionStatement = null;
 			
@@ -70,20 +78,20 @@ public class MariaDbDao {
 				insertSubscriptionStatement = conn.prepareStatement(SQL_INSERT_SUBSCRIPTION);
 				insertSubscriptionStatement.setInt(1, personKey);
 				insertSubscriptionStatement.setString(2, topic.displayName());
-				insertSubscriptionStatement.setString(3, "pending confirmation");
+				insertSubscriptionStatement.setString(3, status);
 				subscriptionRecordsInserted = insertSubscriptionStatement.executeUpdate();
 			
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				try {
+					conn.close();
 					insertSubscriptionStatement.close();
 				} catch (SQLException e){
 					e.printStackTrace();
 				}
 			}
-			System.out.println(topic.displayName() + " subscription records: " + subscriptionRecordsInserted);
-			return conn;
+			System.out.println(topic.displayName() + " subscription records inserted: " + subscriptionRecordsInserted);
 		}
 		
 		public List<Person> getPersonsWithSubscriptions() {
@@ -143,7 +151,7 @@ public class MariaDbDao {
 						result.beforeFirst();						
 					}
 					//assigns completed hashmap to person object
-					person.setSubscriptions(subscription);
+	//				person.setSubscriptions(subscription);
 				}			
 			
 			} catch (SQLException e) {

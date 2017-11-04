@@ -34,12 +34,16 @@ INSERT INTO person (FirstName, LastName, EmailAddress)
 
 SELECT @@identity -- returns the key of the most recently changed record for the current connection
 	
-INSERT INTO subscription (PersonID, IsComputerSub, IsConsoleSub, IsHeaterSub, IsLawnSub, IsToolSub, IsTelevisionSub)
-	VALUES (19, true, false, true, true, false, false); 
+INSERT INTO subscription (PersonID, Topic, ARN)
+	VALUES (20, "Heater", "pending confirmation"); 
+
+
 
 DROP TABLE computer_subscription;
 
-SELECT PersonID, FirstName, LastName, EmailAddress FROM person
+SELECT PersonID, FirstName, LastName, EmailAddress 
+FROM person
+WHERE EmailAddress = "*"
 
 SELECT person.EmailAddress, subscription.Topic, subscription.ARN
 FROM subscription

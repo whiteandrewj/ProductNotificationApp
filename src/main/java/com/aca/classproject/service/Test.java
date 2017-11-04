@@ -62,10 +62,10 @@ public class Test {
 					} else {
 						
 						//switches value of current topic to false if true
-						if (person.getSubscriptions().get(topic.displayName())) {
-							person.getSubscriptions().put(topic.displayName(), false);
+//						if (person.getSubscriptions().get(topic.displayName())) {
+//							person.getSubscriptions().put(topic.displayName(), false);
 							//TODO call some sql update methods
-					}
+//					}
 					
 				}
 			}			

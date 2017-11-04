@@ -9,7 +9,7 @@ public class Subscription {
 	public Topic getTopic() {
 		return topic;
 	}
-	public boolean isSubscribed() {
+	public boolean getIsSubscribed() {
 		return isSubscribed;
 	}
 	public String getStatus() {
@@ -18,7 +18,7 @@ public class Subscription {
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
-	public void setSubscribed(boolean isSubscribed) {
+	public void setIsSubscribed(boolean isSubscribed) {
 		this.isSubscribed = isSubscribed;
 	}
 	public void setStatus(String status) {

@@ -16,21 +16,23 @@ import com.amazonaws.services.sns.model.Subscription;
 
 public class AmazonSnsDao { 
 
-	public void newSubscription(Person subscription, Topic topic) {
+	public String newSubscription(Person person, Topic topic) {
 		
 		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());	
 			
 		SubscribeRequest request = new SubscribeRequest();
 		request.setTopicArn(topic.awsSnsArn());
 		request.setProtocol("email");
-		request.setEndpoint(subscription.getEmailAddress());
+		request.setEndpoint(person.getEmailAddress());
 					
 		SubscribeResult result = client.subscribe(request);
 		
-		System.out.println("AWS subscribe status code: " + result.getSdkHttpMetadata().getHttpStatusCode()
-				+ ", Subscription ARN: " + result.getSubscriptionArn());
+		System.out.println("AWS SNS response code: " + result.getSdkHttpMetadata().getHttpStatusCode()
+				+ ", ARN: " + result.getSubscriptionArn());
 	
 		client.shutdown();
+		
+		return result.getSubscriptionArn().toString();
 	}
 	
 	
