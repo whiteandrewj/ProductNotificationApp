@@ -2,7 +2,7 @@ CREATE TABLE `person` (
 	`PersonID` INT(4) NOT NULL AUTO_INCREMENT,
 	`FirstName` VARCHAR(50) NOT NULL,
 	`LastName` VARCHAR(50) NOT NULL,
-	`EmailAddress` VARCHAR(50) NOT NULL,
+	`EmailAddress` VARCHAR(60) NOT NULL,
 	PRIMARY KEY (`PersonID`)
 );
 
@@ -11,7 +11,7 @@ CREATE TABLE `subscription` (
 	`PersonID` INT(4) NOT NULL,
 	#`EmailAddress` VARCHAR(50) NOT NULL,
 	`Topic` VARCHAR(12) NOT NULL,
-	`ARN` VARCHAR(50) NOT NULL,
+	`ARN` VARCHAR(250) NOT NULL,
 	PRIMARY KEY (`SubscriptionID`),
 	CONSTRAINT `FK_Person_Person_ID` FOREIGN KEY (`PersonID`) REFERENCES `person` (`PersonID`)
 );	
@@ -39,7 +39,7 @@ INSERT INTO subscription (PersonID, Topic, ARN)
 
 
 
-DROP TABLE computer_subscription;
+DROP TABLE person;
 
 SELECT PersonID, FirstName, LastName, EmailAddress 
 FROM person
@@ -59,4 +59,9 @@ SELECT Topic, ARN
 FROM subscription
 WHERE PersonID = 44;
 
+UPDATE subscription
+SET ARN=""
+WHERE PersonID=3 AND Topic="Heater"
 
+DELETE FROM subscription
+WHERE PersonID=3 AND Topic="Heater"

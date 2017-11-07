@@ -1,5 +1,8 @@
 package com.aca.classproject.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -49,15 +52,20 @@ public class NotificationController {
 		return returnMessage;
 	}
 	
-	/* working on a getSubscriptions functions
+	
 	@GET
+	@Path("/subscribe")
 	@Produces(MediaType.APPLICATION_JSON)
-	public <List>Subscription getSubscriptions(Subscription subscription) {
+	public List<Person> getPersons() {
+		NotificationService service = new NotificationService();
 		
-	return null;
+		List<Person> list = new ArrayList();
+		list = service.getCurrentPersons();
+		
+		return list; 
 	}
 	
-	*/
+	
 	@POST
 	@Path("/new")
 	@Produces(MediaType.APPLICATION_JSON)
