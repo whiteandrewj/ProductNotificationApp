@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.aca.classproject.dao.AmazonSnsDao;
-import com.aca.classproject.dao.AwsCreds;
+import com.aca.classproject.dao.Credentials;
 import com.aca.classproject.dao.MariaDbDao;
 import com.aca.classproject.model.Notification;
 import com.aca.classproject.model.Person;

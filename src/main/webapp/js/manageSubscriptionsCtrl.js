@@ -7,6 +7,7 @@ app.controller('manageSubscriptionsCtrl', function($scope, $http) {
 	$scope.getPersons = function() {
 		$http.get("/ProductNotificationApp/rest/notification/subscribe").then(function(response) {
 			$scope.allPersons = response.data;
+			$scope.hidePersons = false;
 		});
 	}
 	
@@ -22,4 +23,5 @@ app.controller('manageSubscriptionsCtrl', function($scope, $http) {
 	}
 	
 	$scope.hideSubscriptions = true;
+	$scope.hidePersons = true;
 });

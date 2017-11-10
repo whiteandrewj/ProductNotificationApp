@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div ng-controller='newNotificationCtrl'>
-		<div class="container-fluid">
+		<div class="container">
 			<nav class="navbar navbar-inverse navbar-static-top">
 				<p class="navbar-text">New Product Notification App</p>
 				<ul class="nav navbar-nav">
@@ -38,51 +38,43 @@
 					</li>													
 				</ul>								
 			</nav>
-			<h1>New Product Entry</h1>
-			<table>
-				<tr>
-					<td>
-						<label>Product Name:<br>
-						<input ng-model="productName" type="text" maxlength="10" /></label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Price:<br>
-						<input ng-model="price" type="text" maxlength="4" /></label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Description:<br>
-						<textarea ng-model="description" >sample text</textarea></label>
-					</td>
-				</tr>			
-				<tr>
-					<td>
-						<select ng-model="topic">
-							<option value="undefined" selected="selected" ></option>
-							<option value="Computer" >Computer</option>
-							<option value="Console" >Game Console</option>
-							<option value="Heater" >Heater</option>
-							<option value="Lawnmower" >Lawn Care</option>						
-							<option value="Tool" >Tool</option>
-							<option value=Television" >TV</option>				
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label>Upload Picture<br>
-						<input type="file" /></label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button ng-click="createNewNotification()" id="submit"><label for="submit">Submit</label></button>
-					</td>
-				</tr>
-			</table>
+			<div>
+				<h1>New Product Entry</h1>					
+				<div class="form-group">
+					<label>Product Name:</label>
+					<input ng-model="productName" type="text" maxlength="25" class="form-control input-sm" />
+				</div>		
+				<div class="form-group">
+					<label>Price:</label>
+					<input ng-model="price" type="text" maxlength="5" class="form-control input-sm" />
+				</div>
+				<div class="form-group">
+					<label>Details:</label>
+					<textarea ng-model="description" class="form-control input-lg" ></textarea>
+				</div>
+				<div class="form-group">
+					<label for="seletTopic">Select Topic</label>
+					<select ng-model="topic" id="selectTopic" class="form-control input-sm">
+						<option value="Computer" >Computer</option>
+						<option value="Console" >Game Console</option>
+						<option value="Heater" >Heater</option>
+						<option value="Lawnmower" >Lawn Care</option>						
+						<option value="Tool" >Tool</option>
+						<option value=Television" >TV</option>				
+					</select>
+				</div>
+				<!-- 
+					<div class="form-group">
+						<label>Upload Picture</label>
+						<input type="file" class="form-control" />
+					</div>				
+			 	-->
+				<div class="form-group">
+					<label for="submit">
+						<button ng-click="createNewNotification()" id="submit" class="btn">Submit</button>
+					</label>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

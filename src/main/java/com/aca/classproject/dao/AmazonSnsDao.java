@@ -18,7 +18,7 @@ public class AmazonSnsDao {
 
 	public String newSubscription(Person person, Topic topic) {
 		
-		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());	
+		AmazonSNSClient client = new AmazonSNSClient(Credentials.getAwsCreds());	
 			
 		SubscribeRequest request = new SubscribeRequest();
 		request.setTopicArn(topic.awsSnsArn());
@@ -44,7 +44,7 @@ public class AmazonSnsDao {
 		notification.setTopic("computer");
 	*/	
 	public void publishToTopic(Notification notification) {	
-		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());
+		AmazonSNSClient client = new AmazonSNSClient(Credentials.getAwsCreds());
 		PublishRequest request = new PublishRequest();
 		request.setMessage("Hello from US12 Resource.\nWe have a new " 
 							+ notification.getTopic() + " in stock!\n" + notification.getProductName()
@@ -65,7 +65,7 @@ public class AmazonSnsDao {
 	}
 		
 	public List<Subscription> getSubscriptions() {
-		AmazonSNSClient client = new AmazonSNSClient(AwsCreds.getAwsCreds());
+		AmazonSNSClient client = new AmazonSNSClient(Credentials.getAwsCreds());
 				
 		ListSubscriptionsResult result = client.listSubscriptions();
 		List<Subscription> list = result.getSubscriptions();

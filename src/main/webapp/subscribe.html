@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div ng-controller='subscribeCtrl'>
-		<div class="container-fluid">
+		<div class="container">
 			<nav class="navbar navbar-inverse navbar-static-top">
 				<p class="navbar-text">New Product Notification App</p>
 				<ul class="nav navbar-nav">
@@ -41,40 +41,46 @@
 			</nav>
 			<h1>Sign up to be notified when we have new items in stock!</h1>
 	
-			<table>
-				<tr>
-					<td><label>First Name: <br> <input ng-model="firstName" type="text"
-							maxlength="15" /></label></td>
-				</tr>
-				<tr>
-					<td><label>Last Name:<br> <input ng-model="lastName" type="text"
-							maxlength="15" /></label></td>
-				</tr>
-				<tr>
-					<td><label>Email Address:<br> <input ng-model="emailAddress" type="email"
-							maxlength="30" /></label></td>
-				</tr>
-				<tr>
-					<td>
-						<fieldset>
-							<legend>I'm interested in...</legend>
-							<label><input type="checkbox" ng-model="Computer" />Computers</label><br>
-							<label><input type="checkbox" ng-model="Console" />Game Consoles</label><br>
-							<label><input type="checkbox" ng-model="Heater" />Heaters</label><br>
-							<label><input type="checkbox" ng-model="Lawnmower" />Lawn Care</label><br>
-							<label><input type="checkbox" ng-model="Tool" />Tools</label><br>
-							<label><input type="checkbox" ng-model="Television" />TVs</label><br>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button id="subscribe" ng-click="createNewSubscription()">
-							<label for="subscribe">Subscribe</label>
-						</button>
-					</td>
-				</tr>
-			</table>
+			<div class="form-group">
+				<label>First Name:</label>
+				<input ng-model="firstName" type="text" maxlength="15" class="form-control input-sm" />
+			</div>
+			<div class="form-group">
+				<label>Last Name:</label>
+				<input ng-model="lastName" type="text" maxlength="15" class="form-control input-sm" />
+			</div>
+			<div class="form-group">
+				<label>Email Address:</label>
+				<input ng-model="emailAddress" type="email" maxlength="30" class="form-control input-sm" />
+			</div>
+			<div class="form-group">
+				<form>
+					<label>I'm interested in...</label>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Computer" />Computers</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Console" />Game Consoles</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Heater" />Heaters</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Lawnmower" />Lawn Care</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Tool" />Tools</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="Television" />TVs</label>
+					</div>
+				</form>
+			</div>		
+			<div class="form-group">
+				<label for="subscribe">
+					<button id="subscribe" ng-click="createNewSubscription()" class="btn">Subscribe</button>
+				</label>					
+			</div>
 		</div>
 	</div>
 </body>

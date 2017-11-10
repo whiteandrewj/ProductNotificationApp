@@ -3,7 +3,8 @@ package com.aca.classproject.service;
 import java.util.List;
 import java.util.Map;
 
-import com.aca.classproject.dao.AwsCreds;
+import com.aca.classproject.dao.Credentials;
+import com.aca.classproject.dao.FacebookDao;
 import com.aca.classproject.dao.MariaDbDao;
 import com.aca.classproject.model.Notification;
 import com.aca.classproject.model.Person;
@@ -16,7 +17,11 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
+		String response = FacebookDao.executePost();
 		
+		System.out.println(response);
+		
+		/*
 		MariaDbDao db = new MariaDbDao();
 		List<Person> personList = db.getPersons();
 		personList = db.getSubscriptions(personList);
@@ -146,7 +151,8 @@ public class Test {
 					+ "\nSubscription ARN: " + result.getSubscriptionArn()
 					+ "\n" + result);
 		}
-	*/	
+	*/
+	}
 }	
 	
 
