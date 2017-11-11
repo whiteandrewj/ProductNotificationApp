@@ -54,7 +54,7 @@ public class NotificationController {
 	
 	
 	@GET
-	@Path("/subscribe")
+	@Path("/subscriptions")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Person> getPersons() {
 		NotificationService service = new NotificationService();

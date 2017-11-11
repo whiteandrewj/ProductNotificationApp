@@ -3,11 +3,11 @@ package com.aca.classproject.model;
 public enum Topic {
 
 	COMPUTER("Computer", "arn:aws:sns:us-east-1:294989386768:Computer"),
-	CONSOLE("Console", null),
+	CONSOLE("Console", "arn:aws:sns:us-east-1:294989386768:Console"),
 	HEATER("Heater", "arn:aws:sns:us-east-1:294989386768:Heater"),
-	LAWNMOWER("Lawnmower", null),
-	TOOL("Tool", null),
-	TELEVISION("Television", null);
+	LAWNMOWER("Lawnmower", "arn:aws:sns:us-east-1:294989386768:Lawnmower"),
+	TOOL("Tool", "arn:aws:sns:us-east-1:294989386768:Tool"),
+	TELEVISION("Television", "arn:aws:sns:us-east-1:294989386768:Television");
 	
 	
 	private final String displayName;

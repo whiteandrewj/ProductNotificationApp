@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div ng-controller='manageSubscriptionsCtrl'>
-		<div class="container">
+		<div class="container-fluid">
 			<nav class="navbar navbar-inverse navbar-static-top">
 				<p class="navbar-text">New Product Notification App</p>
 				<ul class="nav navbar-nav">
@@ -39,10 +39,13 @@
 					</li>													
 				</ul>								
 			</nav>
-			<label for="getSubs">
-				<button id="getSubs" ng-click="getPersons()" class="btn" >Get/Refresh Subs</button>		
-			</label>
-			<div ng-hide="hidePersons">	
+			<div ng-hide="hideGetPersonsBtn">
+				<label for="getPersonsBtn">
+					<button id="getPersonsBtn" ng-click="getPersons(); viewPersons()" class="btn" >Get/Refresh Subs</button>		
+				</label>
+			</div>
+			<div ng-hide="hidePersonsTable">	
+				<p>Select row to view subscription details</p>
 				<table class="table table-condensed table-hover">
 					<thead>
 						<tr>
@@ -60,14 +63,19 @@
 					</tbody>
 				</table>			
 			</div>
-			<div ng-hide="hideSubscriptions">
-				<label for="back"><button id="back" ng-click="viewPersons()" class="btn" >Back</button></label>
+			<div ng-hide="hideSubscriptionsTable">
+					<label for="back"><button id="back" ng-click="viewPersons()" class="btn" >Back</button></label>
+				<div class="row">
+					<div class="col-sm-3">
+						<p><b>Subscription info for:</b><br>{{person.firstName}} {{person.lastName}}<br>{{person.emailAddress}}</p>
+					</div>
+				</div>
 				<table class="table table-condensed">
 					<thead>
 						<tr>
-							<th>Topic</th>
+							<th>Category</th>
 							<th>Opted In</th>
-							<th>ARN</th>
+							<th>Subscription Status</th>
 						</tr>
 					</thead>
 					<tbody>

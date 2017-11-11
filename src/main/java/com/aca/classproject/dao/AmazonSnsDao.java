@@ -65,11 +65,17 @@ public class AmazonSnsDao {
 	}
 		
 	public List<Subscription> getSubscriptions() {
-		AmazonSNSClient client = new AmazonSNSClient(Credentials.getAwsCreds());
-				
-		ListSubscriptionsResult result = client.listSubscriptions();
-		List<Subscription> list = result.getSubscriptions();
+		AmazonSNSClient client = new AmazonSNSClient(Credentials.getAwsCreds());		
+		ListSubscriptionsRequest request = new ListSubscriptionsRequest();		
+		ListSubscriptionsResult result = client.listSubscriptions(request);		
+		List<Subscription> snsList = result.getSubscriptions();
 		
-		return list;
+		//checks if there are more subscriptions to follow; if so call them + adds to list
+		while (result.getNextToken() != null) {			
+			request.setNextToken(result.getNextToken());			
+			result = client.listSubscriptions(request);			
+			snsList.addAll(result.getSubscriptions());
+		}		
+		return snsList;
 	}
 }

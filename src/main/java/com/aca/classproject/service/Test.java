@@ -17,9 +17,15 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		String response = FacebookDao.executePost();
+		AmazonSnsDao dao = new AmazonSnsDao();
+		List<com.amazonaws.services.sns.model.Subscription> snsList = dao.getSubscriptions();
 		
-		System.out.println(response);
+		for(com.amazonaws.services.sns.model.Subscription snsSubscription : snsList) {
+			System.out.println("");
+			System.out.println(snsSubscription.getEndpoint());
+			System.out.println(snsSubscription.getTopicArn());
+			System.out.println(snsSubscription.getSubscriptionArn());
+		};
 		
 		/*
 		MariaDbDao db = new MariaDbDao();

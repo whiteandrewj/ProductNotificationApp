@@ -102,7 +102,7 @@ public class NotificationService {
 							subscription.setStatus(awsArn);							
 						}
 					} else {
-						//TODO sql insert row
+						db.newSubscription(person.getSqlPrimaryKey(), subscription.getTopic(), awsArn);
 						subscription.setIsSubscribed(true);
 						subscription.setStatus(awsArn);
 					}
@@ -112,7 +112,14 @@ public class NotificationService {
 						subscription.setIsSubscribed(false);
 						subscription.setStatus(null);
 					}
-				}				
+				}
+				//Changes values to something more pleasing for frontend
+				if (subscription.getStatus() != null) {
+					if (subscription.getStatus().contains("arn:")) {
+						subscription.setStatus("Confirmed");
+					}
+					
+				}
 				
 				//if email not in AWS and isSubscribed = true
 					//sql delete row
