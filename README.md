@@ -6,7 +6,11 @@ This app was created for small retail establishments that have unique, frequentl
 The app connects business owners to their audiences by providing an interface and management system to push notifications when new stock is aquired.
 
 Technologies/tools used: 
-- Java
-- MariaDb
-- Apache Tomcat servlet
-- AWS Simple Notification Service
+- Java 8
+- Apache Maven - project build and dependency management
+- MariaDb Server and HeidiSQL - database
+- Apache Tomcat - servlet container
+- Git - version control
+- AngularJS - easy implementation of MVC pattern
+- Bootstrap - responsive front-end
+
