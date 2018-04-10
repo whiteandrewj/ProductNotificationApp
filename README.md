@@ -3,7 +3,7 @@
 
 This app was created for small retail establishments that have unique, frequently variable stock, such as pawn shops.
 
-The app connects business owners to their audiences by providing an interface and management system to push notifications when new stock is acquired.
+The app connects business owners to their customers by providing an interface and management system to push notifications when new stock is acquired.
 
 Technologies/tools used: 
 - Java 8
